@@ -4,6 +4,7 @@ Assignment 9
 04/23/2020
 """
 
+# Is Heap
 
 def is_heap(L):
     for i in range(0, len(L)//2):
@@ -12,9 +13,12 @@ def is_heap(L):
     return True
             
 
+# Class that allows for following functions to create
+# heap and implement heapsort
 class heap:
-    S = [2,4,5,3,1,9,6,7,10,8]
-    size = 10
+    def __init__(self, bTree, Size_list):
+        self.S = bTree
+        self.size = Size_list
 
 
 
@@ -54,13 +58,56 @@ def make_heap(h):
 
 def heap_sort(h):
     make_heap(h)
-    print(h.S)
-    print(is_heap(h.S))
     remove_keys(h)
 
 
-h1 = heap
+h1 = heap([2,4,5,3,1,9,6,7,10,8], 10)
 print(h1.S)
-print(is_heap(h1.S))
 heap_sort(h1)
 print(h1.S)
+print()
+
+
+h2 = heap([3,8,5,1,9,12,2,6,11,7], 10)
+if is_heap(h2.S):
+    print("Heap:")
+    print(h2.S)
+else:
+    print("Not a heap:")
+    print(h2.S)
+make_heap(h2)
+if is_heap(h2.S):
+    print("Heap:")
+    print(h2.S)
+else:
+    print("Not a heap:")
+    print(h2.S)
+print()
+
+
+# Hashing using linear probing
+
+class hash:
+    def __init__(self, func, table_size):
+        self.h_func = func
+        self.table = []
+        for i in range(table_size):
+            # make this a value that won't be hashed
+            # for a mod has function -1 is fine
+            self.table.append(-1)
+    def add_hash_element(self, ele):
+        k = self.h_func(ele)
+        while self.table[k] != -1:
+            k += 1
+        self.table[k] = ele
+    def delete_hash_element(self, ele):
+        k = self.h_func(ele)
+        while self.table[k] != ele:
+            k += 1
+        self.table[k] = -1
+def hash_func1(e):
+    return e % 10
+        
+basic_hash = hash(hash_func1, 100)
+
+
