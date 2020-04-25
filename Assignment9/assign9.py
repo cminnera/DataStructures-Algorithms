@@ -4,6 +4,8 @@ Assignment 9
 04/23/2020
 """
 
+import random
+
 # Is Heap
 
 def is_heap(L):
@@ -99,15 +101,34 @@ class hash:
         k = self.h_func(ele)
         while self.table[k] != -1:
             k += 1
+            if k == len(self.table):
+                k = 0
         self.table[k] = ele
     def delete_hash_element(self, ele):
         k = self.h_func(ele)
         while self.table[k] != ele:
             k += 1
+            if k == len(self.table):
+                k=0
         self.table[k] = -1
-def hash_func1(e):
-    return e % 10
+    def print_hash(self):
+        for i in range(len(self.table)):
+            if self.table[i] != -1:
+                print("Bucket [",i,"] :", self.table[i])
         
+        
+def hash_func1(e):
+    return e % 100
+        
+
+
 basic_hash = hash(hash_func1, 100)
+
+for i in range(60):
+    x = random.randrange(0,500)
+    basic_hash.add_hash_element(x)
+    
+basic_hash.print_hash()
+
 
 
