@@ -1,0 +1,12 @@
+undirected unweighted
+a b c d e f g h i
+a g
+a e
+a f
+a i
+b g
+e f
+e i
+i f
+c h
+d h
